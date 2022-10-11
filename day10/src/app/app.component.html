@@ -1,0 +1,34 @@
+<form class="example-form">
+  <mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>Number</mat-label>
+    <input type="text"
+           placeholder="Pick one"
+           aria-label="Number"
+           matInput
+           [formControl]="myControl"
+           [matAutocomplete]="auto">
+    <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+      <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+        {{option}}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+</form>
+<br>
+<app-badge></app-badge>
+<br>
+<!--<app-bottom-sheet></app-bottom-sheet>-->
+<br>
+<app-button></app-button>
+<br>
+<app-button-toggle></app-button-toggle>
+<br>
+<app-card></app-card>
+<br>
+<app-checkbox></app-checkbox>
+<br>
+<app-chips></app-chips>
+<br>
+<app-datepicker></app-datepicker>
+<br>
+<app-dialog></app-dialog>

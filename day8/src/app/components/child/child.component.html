@@ -1,0 +1,11 @@
+<h2>My Heroes</h2>
+<ul class="heros">
+  <li *ngFor = "let hero of heroes">
+    <div>
+      <span class="badge">{{hero.id}}</span>&nbsp;&nbsp;
+      <span class="name">{{hero.name}}</span>
+    </div>
+  </li>
+</ul>
+
+<button type="button" (click)="changeCount()">Count</button>

@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "day15": {
+    "day17": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/day15",
+            "outputPath": "dist/day17",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -23,6 +23,7 @@
               "src/assets"
             ],
             "styles": [
+              "src/custom-theme.scss",
               "src/styles.css"
             ],
             "scripts": []
@@ -64,10 +65,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "day15:build:production"
+              "browserTarget": "day17:build:production"
             },
             "development": {
-              "browserTarget": "day15:build:development"
+              "browserTarget": "day17:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -75,7 +76,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "day15:build"
+            "browserTarget": "day17:build"
           }
         },
         "test": {
@@ -99,6 +100,6 @@
     }
   },
   "cli": {
-    "analytics": "fb478579-c1de-422f-a8b4-ec7f77c07812"
+    "analytics": "3abce646-b268-4717-a529-fa01c859acc4"
   }
 }

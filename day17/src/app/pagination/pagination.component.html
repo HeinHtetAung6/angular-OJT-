@@ -1,0 +1,34 @@
+<div class="table-contianer">
+  <h1>Employee List</h1>
+  <table mat-table [dataSource]=" dataSource" class="element-table">
+
+    <ng-contianer matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef>#ID</th>
+      <td mat-cell *matCellDef="let EmpInfo">{{EmpInfo.id}}</td>
+    </ng-contianer>
+
+    <ng-contianer matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef>Name</th>
+      <td mat-cell *matCellDef="let EmpInfo">{{EmpInfo.name}}</td>
+    </ng-contianer>
+
+    <ng-contianer matColumnDef="department">
+      <th mat-header-cell *matHeaderCellDef>Department</th>
+      <td mat-cell *matCellDef="let EmpInfo">{{EmpInfo.department}}</td>
+    </ng-contianer>
+
+    <ng-contianer matColumnDef="gender">
+      <th mat-header-cell *matHeaderCellDef>Gender</th>
+      <td mat-cell *matCellDef="let EmpInfo">{{EmpInfo.gender}}</td>
+    </ng-contianer>
+
+    <ng-contianer matColumnDef="phNumber">
+      <th mat-header-cell *matHeaderCellDef>Phone Number</th>
+      <td mat-cell *matCellDef="let EmpInfo">{{EmpInfo.phNumber}}</td>
+    </ng-contianer>
+    
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row;columns:displayedColumns"></tr>
+  </table>
+  <mat-paginator #paginator [pageSizeOptions]="[2, 4, 6]" showFirstLastButtons></mat-paginator>
+</div>

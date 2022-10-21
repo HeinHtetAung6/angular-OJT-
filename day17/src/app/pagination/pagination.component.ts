@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { Employee } from '../interfaces/employee';
+import { MatSort } from '@angular/material/sort';
 
 @Component({
   selector: 'app-pagination',
@@ -11,6 +12,7 @@ import { Employee } from '../interfaces/employee';
 export class PaginationComponent implements OnInit {
   
   @ViewChild('paginator') paginator: MatPaginator;
+  @ViewChild('empTbSort') empTbSort: MatSort;
   employeeInfo: Employee[] = [
     { id: 1, name: 'Ag Ag', department: 'IT', gender: 'male', phNumber: '0912345678' },
     { id: 2, name: 'Su Su', department: 'Web', gender: 'female', phNumber: '0912345678' },
@@ -39,7 +41,13 @@ export class PaginationComponent implements OnInit {
     setTimeout(() => {
       this.dataSource = new MatTableDataSource(this.employeeInfo);
       this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.empTbSort;
     })
+  }
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
 }

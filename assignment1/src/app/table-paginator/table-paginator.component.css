@@ -8,3 +8,25 @@
   overflow: auto;
   max-height: 500px;
 }
+
+
+.example-button-row {
+  text-align: center;
+  display: table-cell;
+  width: 490px;
+}
+
+
+.btn {
+  margin-right: 20px;
+}
+
+
+.btn-info {
+  margin-right: 5px;
+}
+
+.btn-info ,
+.btn-danger {
+  border: none;
+}

@@ -2,6 +2,10 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table'
 import { Employee } from '../interfaces/employee';
+import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { DialogComponent } from '../dialog/dialog.component';
+import { ApiService } from '../services/api.service';
+
 
 @Component({
   selector: 'app-table-paginator',
@@ -32,11 +36,12 @@ export class TablePaginatorComponent implements OnInit {
     {position: 19, name: 'Bo Bo', phNumber: "0912345678", dateOfBirth: "24/1/1997", year: '4th', address: 'Yangon'},
     {position: 20, name: 'Soe Soe',phNumber: "0912345678", dateOfBirth: "9/4/1997", year: '4th', address: 'Pann Ta Naw'},
   ]
-  displayedColumns = ['position', 'name', 'phNumber', 'dateOfBirth', 'year', 'address'];
+  displayedColumns = ['position', 'name', 'phNumber', 'dateOfBirth', 'year', 'address', 'action'];
   dataSource!: MatTableDataSource<Employee>;
-  constructor() { }
+  constructor(private dialog: MatDialog,private api: ApiService) { }
 
   ngOnInit(): void {
+    this.getAllStudents();
   }
 
   ngAfterViewInit() {
@@ -44,6 +49,48 @@ export class TablePaginatorComponent implements OnInit {
       this.dataSource = new MatTableDataSource(this.employeeInfo);
       this.dataSource.paginator = this.paginator;
     })
+  }
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
+  openDialog() {
+    this.dialog.open(DialogComponent, {
+      width: '30%',
+    }).afterClosed().subscribe(val => {
+      if (val === 'save') {
+        this.getAllStudents();
+      }
+    })
+  }
+  getAllStudents() {
+    this.api.getStudent()
+      .subscribe({
+        next: (res) => {
+          this.dataSource = new MatTableDataSource(res);
+          this.dataSource.paginator = this.paginator;
+        },
+        error: (err) => {
+          //alert("Error while fetching the records!!")
+        }
+    })
+  }
+
+  editStudent(element: any) {
+    this.dialog.open(DialogComponent, {
+      width: '30%',
+      data: element,
+    }).afterClosed().subscribe(val => {
+      if (val === 'update') {
+        this.getAllStudents();
+      }
+    })
+  }
+
+  deleteStudent() {
+    alert("Are You Sure Want to delete?")
   }
 
 }
